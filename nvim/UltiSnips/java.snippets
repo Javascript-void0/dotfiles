@@ -1,0 +1,23 @@
+snippet sysout "System.out.println();"
+System.out.println($1);
+endsnippet
+
+snippet for "For Loop"
+for (int i = $1; i < $2; i++) {
+	$3
+}
+endsnippet
+
+snippet /** "Javadoc"
+/**
+ * $1
+ * @param $2 - $3
+ * @return $4
+ */
+endsnippet
+
+snippet public "main method"
+public static void main(String[] args) {
+	$1
+}
+endsnippet

@@ -1,0 +1,225 @@
+config:
+  background: &background "#101010"
+  foreground: &foreground "#ffffff"
+  component: &component "#202020"
+  border_active: &border_active "#909090"
+  border_inactive: &border_inactive "#606060"
+
+separator: &separator
+  type: text
+  text: ' '
+  font_size: 20px
+
+gaps:
+  inner_gap: 22
+  outer_gap: 22
+  # outer_gap: "50px 22px 22px 22px"
+
+general:
+  show_floating_on_top: false
+  floating_window_move_amount: "10%"
+  focus_follows_cursor: false
+  cursor_follows_focus: false
+  center_new_floating_windows: false
+
+focus_borders:
+  active:
+    enabled: true
+    color: *border_active
+  inactive:
+    enabled: true
+    color: *border_inactive
+
+bar:
+  # enabled: false
+
+  height: "40px"
+  position: "top"
+  always_on_top: false
+  opacity: 1.0
+  background: *background
+  foreground: *foreground
+  font_family: "EnvyCodeR Nerd Font"
+  font_size: "14px"
+  padding: "4px 26px"
+  offset_x: "0px"
+  offset_y: "0px"
+  border_radius: "0px"
+  component_separator:
+    label: ""
+
+  components_left:
+    - type: "workspaces"
+      focused_workspace_background: *component
+      default_workspace_background: "transparent"
+
+  # components_center:
+  #   - type: "window title"
+
+  components_right:
+
+    - type: "text"
+      text: ""
+      background: *component
+      padding: "0 25 0 15"
+      font_size: 20px
+    - type: "text file"
+      file_path: "C:\\Users\\Java\\Downloads\\GitHub\\dotfiles\\glazewm\\battery.txt"
+      background: *component
+      padding: "8 8 8 0"
+      font_size: 24px
+    - <<: *separator
+    - type: "tiling direction"
+      label_horizontal: "◧"
+      label_vertical: "⬒"
+      background: *component
+      padding: "0 0 0 12"
+      font_size: 15px
+    - type: "network"
+      label_no_internet: "󰤭"
+      label_wifi_strength0: "󰤭"
+      label_wifi_strength25: "󰤟"
+      label_wifi_strength50: "󰤢"
+      label_wifi_strength75: "󰤥"
+      label_wifi_strength100: "󰤨"
+      background: *component
+      padding: "0 20 0 15"
+    - type: "volume"
+      label_low: ""
+      label_medium: ""
+      label_high: ""
+      label_mute: ""
+      background: *component
+      padding: "0 17 0 0"
+    - <<: *separator
+    - type: "clock"
+      time_formatting: "hh:mm MMM d"
+      background: *component
+      padding: "0 15 0 15"
+
+workspaces:
+  - name: "7"
+    bind_to_monitor: 1
+    keep_alive: true
+    display_name: " "
+  - name: "8"
+    display_name: " "
+    keep_alive: false
+  - name: "9"
+    display_name: " "
+    keep_alive: false
+  - name: "0"
+    display_name: " "
+    keep_alive: false
+
+window_rules:
+
+  - command: "set floating"
+    match_process_name: "SnippingTool"                              # Snipping Tool
+  - command: "set floating"
+    match_title: "[Pp]icture.in.[Pp]icture"
+    match_class_name: "Chrome_WidgetWin_1|MozillaDialogClass"       # Picture in Picture
+  - command: "set floating"
+    match_process_name: "netbeans64"
+    match_title: "^((?!Apache NetBeans IDE).)*$"                    # NetBeans windows
+  - command: "set floating"
+    match_process_name: "procexp64"                                 # Process Explorer
+  - command: "set floating"
+    match_process_name: "python"                                    # python
+  - command: "set floating"
+    match_class_name: "#32770"                                      # system dialogs (eg. File Explorer save/open dialog).
+  - command: "resize borders 0px -7px -7px -7px"
+    match_process_name: "steam"                                     # steam borders
+  - command: "set floating"
+    match_title: "Windhawk"                                         # Windhawk
+  - command: "set floating"
+    match_title: "/Google Pixel 3/"                                 # BlueStacks
+  - command: "set floating"
+    match_process_name: "java"										# java
+  - command: "set floating"
+    match_title: "^(?!FireAlpaca).*$"					            # firealpaca
+    match_process_name: "FireAlpaca"
+  - command: "set floating"
+    match_title: "FireAlpaca"					                    # firealpaca initial window
+  - command: "ignore"
+    match_title: "/Zebar/"					                        # zebar
+
+keybindings:
+
+  # Shift focus in a given direction.
+  - command: "focus left"
+    bindings: ["Alt+H"] # "Alt+Left"
+  - command: "focus right"
+    bindings: ["Alt+L"] # "Alt+Right"
+  - command: "focus up"
+    bindings: ["Alt+K"] # "Alt+Up"
+  - command: "focus down"
+    bindings: ["Alt+J"] # "Alt+Down"
+
+  # Move focused window in a given direction.
+  - command: "move left"
+    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
+  - command: "move right"
+    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
+  - command: "move up"
+    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
+  - command: "move down"
+    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
+
+  # Resize focused window by a percentage or pixel amount.
+  - command: "resize width -10%"
+    bindings: ["Alt+U", "Alt+Shift+U"]
+  - command: "resize width +10%"
+    bindings: ["Alt+P", "Alt+Shift+P"]
+  - command: "resize height +10%"
+    bindings: ["Alt+O", "Alt+Shift+O"]
+  - command: "resize height -10%"
+    bindings: ["Alt+I", "Alt+Shift+I"]
+
+  # Change tiling direction. This determines where new tiling windows will be inserted.
+  - command: "tiling direction toggle"
+    binding: "Alt+V"
+
+  # Change the focused window to be floating / tiling.
+  - command: "toggle floating"
+    binding: "Alt+Shift+Space"
+
+  # Change the focused window to be maximized / unmaximized.
+  - command: "toggle maximized"
+    binding: "Alt+X"
+
+  # Minimize focused window.
+  - command: "set minimized"
+    binding: "Alt+M"
+
+  # Close focused window.
+  - command: "close"
+    binding: "Alt+Shift+W"
+
+  # Re-evaluate configuration file.
+  - command: "reload config"
+    binding: "Alt+Shift+R"
+
+  # Change focus to a workspace defined in `workspaces` config.
+  - command: "focus workspace 7"
+    binding: "Alt+7"
+  - command: "focus workspace 8"
+    binding: "Alt+8"
+  - command: "focus workspace 9"
+    binding: "Alt+9"
+  - command: "focus workspace 0"
+    binding: "Alt+0"
+
+  # Move focused window to a workspace defined in `workspaces` config.
+  - commands: ["move to workspace 7", "focus workspace 7"]
+    binding: "Alt+Shift+7"
+  - commands: ["move to workspace 8", "focus workspace 8"]
+    binding: "Alt+Shift+8"
+  - commands: ["move to workspace 9", "focus workspace 9"]
+    binding: "Alt+Shift+9"
+  - commands: ["move to workspace 0", "focus workspace 0"]
+    binding: "Alt+Shift+0"
+
+  # Safely restart GWM
+  # - commands: ["exec glaze-restart.bat", "exit WM"]
+  #   binding: "Alt+Shift+Q"

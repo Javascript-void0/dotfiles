@@ -1,0 +1,106 @@
+snippet temp "Endless Frontier Data Unit" iw
+,
+"fullArt": "$1",
+"sex": "${2:male}",
+"airAttack": ${3:false},
+"cloakingDetection": ${4:false},
+"specialUnit": ${5:0},
+"details": {
+	"baseAttack": $6,
+	"baseHP": $7,
+	"basePhysicalDefense": $8,
+	"baseMagicalDefense": $9,
+	"attackSpeed": $10,
+	"attackRange": $11,
+	"movementSpeed": $12,
+	"criticalRate": ${13:20},
+	"criticalDamage": ${14:50.0},
+	"respawnTime": ${15:150},
+	"evolutions": [$16],
+	"pet": $17,
+	"battle": [
+		"Normal Attack: $18",
+		"Skill Attack: $19"$20
+	],
+	"specialAbility": [$21],
+	"tribeSkill": "${22:None (only evolved units can have tribe skills)}"
+},
+"skills": [
+	{
+		"level": 25,
+		"skill": ${23}
+	},
+	{
+		"level": 50,
+		"skill": ${24}
+	},
+	{
+		"level": 100,
+		"skill": ${25}
+	},
+	{
+		"level": 200,
+		"skill": ${26}
+	},
+	{
+		"level": 300,
+		"skill": ${27}
+	},
+	{
+		"level": 500,
+		"skill": ${28}
+	},
+	{
+		"level": 700,
+		"skill": ${29}
+	},
+	{
+		"level": 900,
+		"skill": ${30}
+	},
+	{
+		"level": 1100,
+		"skill": ${31}
+	},
+	{
+		"level": 1200,
+		"skill": ${32}
+	},
+	{
+		"level": 1300,
+		"skill": ${33}
+	},
+	{
+		"level": 1400,
+		"skill": ${34}
+	},
+	{
+		"level": 1500,
+		"skill": ${35}
+	}
+],
+"transMaterial": ${36:null},
+"equipment": []
+endsnippet
+
+
+
+snippet humantribe "Human Tribe Skill" w
+Human Tribe Skill: A covenant between Human units and the Earth Spirit that grants immunity to knock-back attacks. (Immune to knock-back)
+endsnippet
+
+
+
+snippet ske "Unit Skills" w
+"$1 Increased$2: $3%"
+endsnippet
+
+
+
+snippet sken "Full Unit Skills" iw
+,
+{
+	"level": ${1}00,
+	"skill": "$1 Increased$2: $3%"
+}
+endsnippet

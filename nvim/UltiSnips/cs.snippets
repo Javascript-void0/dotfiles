@@ -1,0 +1,22 @@
+snippet cw "Console.WriteLine();"
+Console.WriteLine($1);
+endsnippet
+
+snippet mgs "Model Get/Set"
+public $1 $2
+{
+	get
+	{
+		return $3;
+	}
+	set
+	{
+		if ($3 != value)
+		{
+			$3 = value;
+			if (PropertyChanged != null)
+				PropertyChanged(this, new PropertyChangedEventArgs("$2"));
+		}
+	}
+}
+endsnippet
