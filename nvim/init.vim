@@ -7,10 +7,11 @@ set mouse=a                        " idk mouse stuff
 set nowrap                         " line wrappin
 set hlsearch                       " highlight search 
 set incsearch                      " incremental search
-set tabstop=4                      " number of columns occupied by a tab 
-set softtabstop=4                  " see multiple spaces as tabstops so <BS> does the right thing
-set noexpandtab                    " converts tabs
+set tabstop=4                      " tab character width of 8
+set softtabstop=4                  " idk
 set shiftwidth=4                   " width for autoindents
+set smarttab                       " smart stuff
+set expandtab                      " converts tabs
 set autoindent                     " indent a new line the same amount as the line just typed
 set smartindent                    " smart indenting?
 set number                         " add line numbers
@@ -34,36 +35,36 @@ set foldmethod=marker              " default marker: {{{  }}}
 " install plugins
 call plug#begin()
 
-    Plug 'elvessousa/sobrio'                            		" colorscheme
-    Plug 'joshdick/onedark.vim'                         		" colorscheme
-    Plug 'sainnhe/everforest'                           		" colorscheme
-    Plug 'ellisonleao/gruvbox.nvim'                     		" colorscheme
-    Plug 'vim-airline/vim-airline'                      		" bottom bar thing
-    Plug 'vim-airline/vim-airline-themes'               		" bottom bar thing theme
-    Plug 'preservim/nerdtree'                           		" file explorer
-    Plug 'ap/vim-css-color'                             		" css color highlighting
-    Plug 'romgrk/barbar.nvim'                           		" tab buffers
-    Plug 'sheerun/vim-polyglot'                         		" language pack
-    Plug 'jiangmiao/auto-pairs'                         		" complete pairs
-    Plug 'tpope/vim-surround'                           		" add surrounding pairs
-    Plug 'plasticboy/vim-markdown'                      		" markdown
-    Plug 'lukas-reineke/indent-blankline.nvim'          		" tab lines
-    Plug 'tpope/vim-commentary'                         		" commenting
-    Plug 'mg979/vim-visual-multi'                       		" multiple cursors
-    Plug 'sirver/ultisnips'                             		" snippets
-    Plug 'airblade/vim-gitgutter'                       		" git changes
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }   		" autocomplete
+    Plug 'elvessousa/sobrio'                                    " colorscheme
+    Plug 'joshdick/onedark.vim'                                 " colorscheme
+    Plug 'sainnhe/everforest'                                   " colorscheme
+    Plug 'ellisonleao/gruvbox.nvim'                             " colorscheme
+    Plug 'vim-airline/vim-airline'                              " bottom bar thing
+    Plug 'vim-airline/vim-airline-themes'                       " bottom bar thing theme
+    Plug 'preservim/nerdtree'                                   " file explorer
+    Plug 'ap/vim-css-color'                                     " css color highlighting
+    Plug 'romgrk/barbar.nvim'                                   " tab buffers
+    Plug 'sheerun/vim-polyglot'                                 " language pack
+    Plug 'jiangmiao/auto-pairs'                                 " complete pairs
+    Plug 'tpope/vim-surround'                                   " add surrounding pairs
+    Plug 'plasticboy/vim-markdown'                              " markdown
+    Plug 'lukas-reineke/indent-blankline.nvim'                  " tab lines
+    Plug 'tpope/vim-commentary'                                 " commenting
+    Plug 'mg979/vim-visual-multi'                               " multiple cursors
+    Plug 'sirver/ultisnips'                                     " snippets
+    Plug 'airblade/vim-gitgutter'                               " git changes
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }           " autocomplete
     Plug 'nvim-treesitter/nvim-treesitter', {
     \    'do': ':TSUpdate'
-    \    }                                              		" syntax highlighting i think
-    Plug 'mikroskeem/vim-sk-syntax'                     		" skript syntax highlighting
-    Plug 'voldikss/vim-floaterm'                        		" floating terminal
-    Plug 'xiyaowong/transparent.nvim'                   		" make background transparent
-    Plug 'peterhoeg/vim-qml'                            		" qt gui
-    Plug 'bullets-vim/bullets.vim'                      		" lists
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } 		" fzf
-    Plug 'junegunn/fzf.vim'										" fzf vim
-	
+    \    }                                                      " syntax highlighting i think
+    Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
+    Plug 'voldikss/vim-floaterm'                                " floating terminal
+    Plug 'xiyaowong/transparent.nvim'                           " make background transparent
+    Plug 'peterhoeg/vim-qml'                                    " qt gui
+    Plug 'bullets-vim/bullets.vim'                              " lists
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " fzf
+    Plug 'junegunn/fzf.vim'                                     " fzf vim
+    
 call plug#end()
 
 " commands for vim
@@ -76,15 +77,23 @@ cnoreabbrev W w
 command! Q execute "q"
 cnoreabbrev Q q
 
+" :gof opens directory of current file in NERDTree
+command! Gof execute "NERDTree %:p:h"
+
 " assumes set ignorecase smartcase
 augroup dynamic_smartcase
-	autocmd!
-	autocmd CmdLineEnter : set nosmartcase
-	autocmd CmdLineLeave : set smartcase
+    autocmd!
+    autocmd CmdLineEnter : set nosmartcase
+    autocmd CmdLineLeave : set smartcase
 augroup END
 
 " enable TreeSitter highlighting
 autocmd VimEnter * TSEnable highlight
+autocmd VimEnter * TSDisable highlight lua
+
+" disable folding for markdown
+autocmd FileType markdown setlocal nofoldenable
+
 
 
 
@@ -148,20 +157,20 @@ func! File_manager() abort
         else
             let path = expand("%:p")
         endif
-
-		silent exe '!explorer.exe /select,' .. path
+        
+        silent exe '!explorer.exe /select,' .. path
 
 
     elseif has ("unix") " wsl2
         if expand("%:p") == ""
-			let path = substitute(expand("%:p:h"), "/", "\\", "g")
+            let path = substitute(expand("%:p:h"), "/", "\\", "g")
         else
-			let path = substitute(expand("%:p"), "/", "\\", "g")
-		endif
+            let path = substitute(expand("%:p"), "/", "\\", "g")
+        endif
 
-		silent exe '!explorer.exe /select,"U:' .. path .. '"'
+        silent exe '!explorer.exe /select,"U:' .. path .. '"'
 
-	endif
+    endif
 
 endfunc
 
@@ -191,12 +200,12 @@ inoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
 let g:barbar_auto_setup = v:false " disable auto-setup
 lua << EOF
 require'barbar'.setup {
-	icons = {
-	    filetype = {
-			enabled = false
-			}
-		}
-	}
+    icons = {
+        filetype = {
+            enabled = false
+            }
+        }
+    }
 EOF
 
 
@@ -275,6 +284,6 @@ endif
 
 " holy fuck
 command! -bang -nargs=* GGrep
-	\ call fzf#vim#grep(
+    \ call fzf#vim#grep(
     \   'git grep --line-number -- '.fzf#shellescape(<q-args>),
     \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)

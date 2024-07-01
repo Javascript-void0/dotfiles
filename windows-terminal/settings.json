@@ -6,6 +6,22 @@
         {
             "command": 
             {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 0
+            },
+            "keys": "ctrl+1"
+        },
+        {
+            "command": 
+            {
                 "action": "switchToTab",
                 "index": 4
             },
@@ -98,22 +114,6 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 0
-            },
-            "keys": "ctrl+1"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -125,15 +125,15 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": "paste"
-        },
-        {
             "command": 
             {
                 "action": "switchToTab",
                 "index": 3
             },
             "keys": "ctrl+4"
+        },
+        {
+            "command": "paste"
         },
         {
             "command": 
@@ -163,17 +163,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 5
+                "index": 6
             },
-            "keys": "ctrl+6"
+            "keys": "ctrl+7"
         },
         {
             "command": 
             {
                 "action": "switchToTab",
-                "index": 6
+                "index": 5
             },
-            "keys": "ctrl+7"
+            "keys": "ctrl+6"
         }
     ],
     "alwaysOnTop": false,
@@ -234,7 +234,7 @@
                 "useAcrylic": false
             },
             {
-                "backgroundImage": "C:\\Users\\Java\\Downloads\\GitHub\\dotfiles\\WindowsTerminal\\Picture2.png",
+                "backgroundImage": "C:\\Users\\Java\\Downloads\\GitHub\\dotfiles\\windows-terminal\\Picture2.png",
                 "backgroundImageAlignment": "right",
                 "backgroundImageOpacity": 1.0,
                 "backgroundImageStretchMode": "none",
@@ -275,7 +275,7 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "backgroundImage": "C:\\Users\\Java\\Downloads\\GitHub\\dotfiles\\WindowsTerminal\\Picture1.png",
+                "backgroundImage": "C:\\Users\\Java\\Downloads\\GitHub\\dotfiles\\windows-terminal\\Picture2.png",
                 "backgroundImageAlignment": "right",
                 "backgroundImageOpacity": 1.0,
                 "backgroundImageStretchMode": "none",
