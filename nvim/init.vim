@@ -51,7 +51,7 @@ call plug#begin()
     Plug 'lukas-reineke/indent-blankline.nvim'                  " tab lines
     Plug 'tpope/vim-commentary'                                 " commenting
     Plug 'mg979/vim-visual-multi'                               " multiple cursors
-    Plug 'sirver/ultisnips'                                     " snippets
+    " Plug 'sirver/ultisnips'                                     " snippets
     Plug 'airblade/vim-gitgutter'                               " git changes
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }           " autocomplete
     Plug 'nvim-treesitter/nvim-treesitter', {
@@ -123,9 +123,9 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " nerdtree toggle
 nnoremap <C-b> <Cmd>:NERDTreeToggle<CR>
@@ -220,7 +220,8 @@ let g:coc_global_extensions = [
 \  'coc-python', 
 \  'coc-java', 
 \  'coc-css', 
-\  'coc-clangd'
+\  'coc-clangd',
+\  'coc-snippets'
 \] " :CocList extensions
 
 function! ShowDocumentation()
@@ -237,6 +238,20 @@ nnoremap <silent> K :call ShowDocumentation()<CR>
 " GoTo code navigation
 nmap <silent> L <Plug>(coc-definition)
 
+" tab to trigger completion and jump
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = "<s-tab>"
 
 
 " 
@@ -272,6 +287,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " if has("win32") " win11
 "     command! -bang -nargs=? -complete=dir Files
 "         \ call fzf#vim#files(<q-args>, {'options': ['--preview', 'bat --theme=gruvbox-dark {}']}, <bang>0)
+" endif
 if has("unix") " wsl2
     command! -bang -nargs=? -complete=dir Files
         \ call fzf#vim#files(<q-args>, {'options': ['--preview', '~/.config/nvim/fzf-preview.sh {}']}, <bang>0)

@@ -1,7 +1,6 @@
 {
+	"snippets.priority": 1000,
 	"inlayHint.enable": false,
 	"diagnostic.virtualText": true,
-	// "diagnostic.virtualTextCurrentLineOnly": false,
-	"diagnostic.virtualTextPrefix": "-- ",
-	// "diagnostic.virtualTextWinCol": 40
+	"diagnostic.virtualTextPrefix": "-- "
 }
