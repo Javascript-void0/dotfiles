@@ -98,20 +98,19 @@ autocmd FileType markdown setlocal nofoldenable
 "
 colorscheme gruvbox
 let g:airline_theme='base16_gruvbox_dark_medium'
-hi Normal               guibg=NONE ctermbg=NONE " general transparent background
-hi EndOfBuffer          guibg=NONE ctermbg=NONE " unused space transparent background
-hi LineNr               guibg=NONE ctermbg=NONE " line numbers transparent background
-hi SignColumn           guibg=NONE ctermbg=NONE " git-gutter transparent background
+hi Normal               guibg=NONE ctermbg=NONE     " general transparent background
+hi EndOfBuffer          guibg=NONE ctermbg=NONE     " unused space transparent background
+hi LineNr               guibg=NONE ctermbg=NONE     " line numbers transparent background
+hi SignColumn           guibg=NONE ctermbg=NONE     " git-gutter transparent background
 
-hi CocFloating          guibg=NONE ctermbg=NONE " coc-nvim transparent background
-hi Floaterm             guibg=NONE ctermbg=NONE " floaterm transparent background
-hi FloatermBorder       guifg=#545454 guibg=#282828 ctermbg=NONE " floaterm transparent borders
+hi CocFloating          guibg=NONE ctermbg=NONE     " coc-nvim transparent background
+hi Floaterm             guibg=#282828 ctermbg=NONE  " floaterm transparent background
+hi FloatermBorder       guibg=#282828 guifg=#bdae93 " floaterm transparent borders
+hi FZF                  guibg=#282828 guifg=#bdae93
     
-hi GitGutterAdd         guibg=NONE ctermbg=NONE " gitgutter transparent background
+hi GitGutterAdd         guibg=NONE ctermbg=NONE     " gitgutter transparent background
 hi GitGutterChange      guibg=NONE ctermbg=NONE
 hi GitGutterDelete      guibg=NONE ctermbg=NONE
-
-hi FZF                  guibg=#282828 guifg=#bdae93
 
 let g:fzf_colors = 
 \ { 'bg':      ['bg', 'FZF'],
@@ -141,7 +140,7 @@ nnoremap <silent> <C-s> <Cmd>:w<CR>
 nnoremap <silent> - $
 vnoremap <silent> - $
 
-" change commenting for c# and skript
+" change commenting
 augroup comment_string
     autocmd!
     autocmd FileType cs setlocal commentstring=//\ %s
