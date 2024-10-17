@@ -53,13 +53,14 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter', {
     \    'do': ':TSUpdate'
     \    }                                                      " syntax highlighting i think
-    " Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
     Plug 'voldikss/vim-floaterm'                                " floating terminal
     Plug 'xiyaowong/transparent.nvim'                           " make background transparent
-    " Plug 'peterhoeg/vim-qml'                                    " qt gui
     Plug 'bullets-vim/bullets.vim'                              " lists
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " fzf
     Plug 'junegunn/fzf.vim'                                     " fzf vim
+
+    " Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
+    " Plug 'peterhoeg/vim-qml'                                    " qt gui
     
 call plug#end()
 
@@ -102,11 +103,12 @@ hi Normal               guibg=NONE ctermbg=NONE     " general transparent backgr
 hi EndOfBuffer          guibg=NONE ctermbg=NONE     " unused space transparent background
 hi LineNr               guibg=NONE ctermbg=NONE     " line numbers transparent background
 hi SignColumn           guibg=NONE ctermbg=NONE     " git-gutter transparent background
+hi TODO                 guifg=#bdae93 gui=NONE      " TODO color, no italic
 
 hi CocFloating          guibg=NONE ctermbg=NONE     " coc-nvim transparent background
-hi Floaterm             guibg=#282828 ctermbg=NONE  " floaterm transparent background
-hi FloatermBorder       guibg=#282828 guifg=#bdae93 " floaterm transparent borders
-hi FZF                  guibg=#282828 guifg=#bdae93
+hi Floaterm             guibg=#282828 ctermbg=NONE  " floaterm solid background
+hi FloatermBorder       guibg=#282828 guifg=#bdae93 " floaterm solid borders
+hi FZF                  guibg=#282828 guifg=#bdae93 " FZF border and background
     
 hi GitGutterAdd         guibg=NONE ctermbg=NONE     " gitgutter transparent background
 hi GitGutterChange      guibg=NONE ctermbg=NONE
@@ -115,6 +117,7 @@ hi GitGutterDelete      guibg=NONE ctermbg=NONE
 let g:fzf_colors = 
 \ { 'bg':      ['bg', 'FZF'],
   \ 'border':  ['fg', 'FZF'] }
+
 
 
 
@@ -186,6 +189,7 @@ nnoremap <silent> gof :call File_manager()<CR>
 " 
 " [ ========== barbar =========== ]
 "
+" mappings
 nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
 nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
 nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
