@@ -35,9 +35,6 @@ set foldmethod=marker              " default marker: {{{  }}}
 " install plugins
 call plug#begin()
 
-    Plug 'elvessousa/sobrio'                                    " colorscheme
-    Plug 'joshdick/onedark.vim'                                 " colorscheme
-    Plug 'sainnhe/everforest'                                   " colorscheme
     Plug 'ellisonleao/gruvbox.nvim'                             " colorscheme
     Plug 'vim-airline/vim-airline'                              " bottom bar thing
     Plug 'vim-airline/vim-airline-themes'                       " bottom bar thing theme
@@ -48,19 +45,18 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'                                 " complete pairs
     Plug 'tpope/vim-surround'                                   " add surrounding pairs
     Plug 'plasticboy/vim-markdown'                              " markdown
-    Plug 'lukas-reineke/indent-blankline.nvim'                  " tab lines
     Plug 'tpope/vim-commentary'                                 " commenting
     Plug 'mg979/vim-visual-multi'                               " multiple cursors
-    " Plug 'sirver/ultisnips'                                     " snippets
+    Plug 'sirver/ultisnips', {'on': []}                         " snippets (for coc-snippets)
     Plug 'airblade/vim-gitgutter'                               " git changes
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }           " autocomplete
     Plug 'nvim-treesitter/nvim-treesitter', {
     \    'do': ':TSUpdate'
     \    }                                                      " syntax highlighting i think
-    Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
+    " Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
     Plug 'voldikss/vim-floaterm'                                " floating terminal
     Plug 'xiyaowong/transparent.nvim'                           " make background transparent
-    Plug 'peterhoeg/vim-qml'                                    " qt gui
+    " Plug 'peterhoeg/vim-qml'                                    " qt gui
     Plug 'bullets-vim/bullets.vim'                              " lists
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " fzf
     Plug 'junegunn/fzf.vim'                                     " fzf vim
@@ -100,15 +96,26 @@ autocmd FileType markdown setlocal nofoldenable
 " 
 " [ ========== Theme ========== ]
 "
-let g:everforest_disable_italic_comment=1                           " disable italic comments
 colorscheme gruvbox
 let g:airline_theme='base16_gruvbox_dark_medium'
-autocmd VimEnter * hi Normal                guibg=NONE ctermbg=NONE " general transparent background
-autocmd VimEnter * hi EndOfBuffer           guibg=NONE ctermbg=NONE " unused space transparent background
-autocmd VimEnter * hi LineNr                guibg=NONE ctermbg=NONE " line numbers transparent background
-autocmd VimEnter * hi SignColumn            guibg=NONE ctermbg=NONE " git-gutter transparent background
-autocmd VimEnter * hi CocFloating           guibg=NONE ctermbg=NONE " coc-nvim transparent background
-autocmd VimEnter * hi FloatermBorder        guibg=NONE ctermbg=NONE " floaterm transparent borders
+hi Normal               guibg=NONE ctermbg=NONE " general transparent background
+hi EndOfBuffer          guibg=NONE ctermbg=NONE " unused space transparent background
+hi LineNr               guibg=NONE ctermbg=NONE " line numbers transparent background
+hi SignColumn           guibg=NONE ctermbg=NONE " git-gutter transparent background
+
+hi CocFloating          guibg=NONE ctermbg=NONE " coc-nvim transparent background
+hi Floaterm             guibg=NONE ctermbg=NONE " floaterm transparent background
+hi FloatermBorder       guifg=#545454 guibg=#282828 ctermbg=NONE " floaterm transparent borders
+    
+hi GitGutterAdd         guibg=NONE ctermbg=NONE " gitgutter transparent background
+hi GitGutterChange      guibg=NONE ctermbg=NONE
+hi GitGutterDelete      guibg=NONE ctermbg=NONE
+
+hi FZF                  guibg=#282828 guifg=#bdae93
+
+let g:fzf_colors = 
+\ { 'bg':      ['bg', 'FZF'],
+  \ 'border':  ['fg', 'FZF'] }
 
 
 
@@ -121,11 +128,6 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
-
-" ultisnips
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " nerdtree toggle
 nnoremap <C-b> <Cmd>:NERDTreeToggle<CR>
@@ -140,11 +142,14 @@ nnoremap <silent> - $
 vnoremap <silent> - $
 
 " change commenting for c# and skript
-autocmd FileType cs setlocal commentstring=//\ %s
-autocmd FileType sk setlocal ft=skript
-autocmd FileType skript setlocal commentstring=#\ %s
-autocmd FileType c setlocal commentstring=//\ %s
-autocmd FileType ino setlocal commentstring=//\ %s
+augroup comment_string
+    autocmd!
+    autocmd FileType cs setlocal commentstring=//\ %s
+    autocmd FileType sk setlocal ft=skript
+    autocmd FileType skript setlocal commentstring=#\ %s
+    autocmd FileType c setlocal commentstring=//\ %s
+    autocmd FileType ino setlocal commentstring=//\ %s
+augroup END
 
 " open explorer where current file is located - ref https://vi.stackexchange.com/a/31847
 func! File_manager() abort
