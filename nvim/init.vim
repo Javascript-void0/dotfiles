@@ -64,6 +64,9 @@ call plug#begin()
     
 call plug#end()
 
+" manzeloth/live-server
+source <sfile>:h/live-server.vim
+
 " commands for vim
 command! Reload execute "so $MYVIMRC"
 cnoreabbrev reload Reload
@@ -183,6 +186,10 @@ endfunc
 
 " nnoremap <silent> gof :silent exe '!explorer.exe .'<CR>
 nnoremap <silent> gof :call File_manager()<CR>
+
+" zO and zC to open and close all folds
+nnoremap <silent> zO zR
+nnoremap <silent> zC zM
 
 
 
