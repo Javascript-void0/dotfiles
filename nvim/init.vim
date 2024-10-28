@@ -94,10 +94,16 @@ autocmd VimEnter * TSDisable highlight lua
 " disable folding for markdown
 autocmd FileType markdown setlocal nofoldenable
 
+" set foldtext to show first line
+function! FoldText()
+    let nl = v:foldend - v:foldstart + 1
+    let linetext = substitute(getline(v:foldstart+1),"^ *","",1)
+    let txt = '+--- ' . linetext . ' | ' . nl . ' lines '
+    return txt
+endfunction
+set foldtext=FoldText()
 
 
-
-" 
 " [ ========== Theme ========== ]
 "
 colorscheme gruvbox
@@ -107,6 +113,7 @@ hi EndOfBuffer          guibg=NONE ctermbg=NONE     " unused space transparent b
 hi LineNr               guibg=NONE ctermbg=NONE     " line numbers transparent background
 hi SignColumn           guibg=NONE ctermbg=NONE     " git-gutter transparent background
 hi TODO                 guifg=#bdae93 gui=NONE      " TODO color, no italic
+hi Folded               guibg=NONE ctermbg=NONE
 
 hi CocFloating          guibg=NONE ctermbg=NONE     " coc-nvim transparent background
 hi Floaterm             guibg=#282828 ctermbg=NONE  " floaterm solid background

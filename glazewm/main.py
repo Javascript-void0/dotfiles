@@ -29,7 +29,7 @@ class BatteryBarComponent():
                 if self.blink_state:
                     return f'{BLOCK_FULL*4}{BLOCK_PART}'
                 return bar
-                    
+
         elif not charging:
             if self.blink_state:
                 bar += BLOCK_PART
@@ -47,7 +47,7 @@ class BatteryBarComponent():
         while True:
             battery = self.get('Win32_Battery', 'EstimatedChargeRemaining')
             state = self.get('Win32_Battery', 'BatteryStatus')
-    
+
             self.blink_state = not self.blink_state
             bar = self.create_bar(battery, state != 1)
             self.write_to_file(bar)
