@@ -1,3 +1,5 @@
 glazewm/battery.txt
 xournalpp/metadata
 xournalpp/autosave
+.cellwriter/fifo
+.cellwriter/profile.backup
