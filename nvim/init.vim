@@ -38,13 +38,13 @@ call plug#begin()
     Plug 'ellisonleao/gruvbox.nvim'                             " colorscheme
     Plug 'vim-airline/vim-airline'                              " bottom bar thing
     Plug 'vim-airline/vim-airline-themes'                       " bottom bar thing theme
-    Plug 'preservim/nerdtree'                                   " file explorer
+    Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle' }        " file explorer
     Plug 'ap/vim-css-color'                                     " css color highlighting
     Plug 'romgrk/barbar.nvim'                                   " tab buffers
     Plug 'sheerun/vim-polyglot'                                 " language pack
     Plug 'jiangmiao/auto-pairs'                                 " complete pairs
     Plug 'tpope/vim-surround'                                   " add surrounding pairs
-    Plug 'plasticboy/vim-markdown'                              " markdown
+    Plug 'plasticboy/vim-markdown', {'for': 'markdown'}         " markdown
     Plug 'tpope/vim-commentary'                                 " commenting
     Plug 'mg979/vim-visual-multi'                               " multiple cursors
     Plug 'sirver/ultisnips', {'on': []}                         " snippets (for coc-snippets)
@@ -162,6 +162,13 @@ augroup comment_string
     autocmd FileType c setlocal commentstring=//\ %s
     autocmd FileType ino setlocal commentstring=//\ %s
 augroup END
+
+" change surround
+xmap <silent> ( S)
+xmap <silent> [ S]
+xmap <silent> { S}
+xmap <silent> ' S'
+xmap <silent> " S"
 
 " open explorer where current file is located - ref https://vi.stackexchange.com/a/31847
 func! File_manager() abort
