@@ -113,7 +113,9 @@ hi EndOfBuffer          guibg=NONE ctermbg=NONE     " unused space transparent b
 hi LineNr               guibg=NONE ctermbg=NONE     " line numbers transparent background
 hi SignColumn           guibg=NONE ctermbg=NONE     " git-gutter transparent background
 hi TODO                 guifg=#bdae93 gui=NONE      " TODO color, no italic
-hi Folded               guibg=NONE ctermbg=NONE
+hi Folded               guibg=NONE ctermbg=NONE     " fold header
+hi Comment              gui=NONE                    " comment no italic
+hi String               gui=NONE                    " string no italic
 
 hi CocFloating          guibg=NONE ctermbg=NONE     " coc-nvim transparent background
 hi Floaterm             guibg=#282828 ctermbg=NONE  " floaterm solid background
