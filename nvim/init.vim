@@ -58,6 +58,7 @@ call plug#begin()
     Plug 'bullets-vim/bullets.vim'                              " lists
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " fzf
     Plug 'junegunn/fzf.vim'                                     " fzf vim
+    Plug 'lervag/vimtex', {'tag': 'v2.15'}                      " latex
 
     " Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
     " Plug 'peterhoeg/vim-qml'                                    " qt gui
@@ -171,6 +172,17 @@ xmap <silent> [ S]
 xmap <silent> { S}
 xmap <silent> ' S'
 xmap <silent> " S"
+
+" vimtex
+let g:tex_flavor='latex'
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_quickfix_mode=1
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+" latex autopairs
+au Filetype tex let b:AutoPairs = AutoPairsDefine({'$': '$'})
 
 " open explorer where current file is located - ref https://vi.stackexchange.com/a/31847
 func! File_manager() abort
