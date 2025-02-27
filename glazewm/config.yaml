@@ -77,13 +77,8 @@ bar:
       background: *component
       padding: "0 0 0 12"
       font_size: 15px
-    - type: "network"
-      label_no_internet: "󰤭"
-      label_wifi_strength0: "󰤭"
-      label_wifi_strength25: "󰤟"
-      label_wifi_strength50: "󰤢"
-      label_wifi_strength75: "󰤥"
-      label_wifi_strength100: "󰤨"
+    - type: "text"
+      text: "󰤥"
       background: *component
       padding: "0 20 0 15"
     - type: "volume"
@@ -136,6 +131,8 @@ window_rules:
     match_title: "Windhawk"                                         # Windhawk
   - command: "set floating"
     match_title: "/Google Pixel 3/"                                 # BlueStacks
+  - command: "set floating"
+    match_title: "/^MuMu.*$/"                                       # MuMu
   - command: "set floating"
     match_process_name: "java"										# java
   - command: "set floating"

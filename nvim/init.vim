@@ -173,17 +173,6 @@ xmap <silent> { S}
 xmap <silent> ' S'
 xmap <silent> " S"
 
-" vimtex
-let g:tex_flavor='latex'
-let g:vimtex_view_general_viewer = 'SumatraPDF'
-let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
-let g:vimtex_quickfix_mode=1
-set conceallevel=1
-let g:tex_conceal='abdmg'
-
-" latex autopairs
-au Filetype tex let b:AutoPairs = AutoPairsDefine({'$': '$'})
-
 " open explorer where current file is located - ref https://vi.stackexchange.com/a/31847
 func! File_manager() abort
 
@@ -297,6 +286,7 @@ let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = "<s-tab>"
 
 
+
 " 
 " [ ========== Terminal ========== ]
 "
@@ -346,3 +336,20 @@ command! -bang -nargs=* GGrep
     \ call fzf#vim#grep(
     \   'git grep --line-number -- '.fzf#shellescape(<q-args>),
     \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+
+
+" 
+" [ ========== vimtex ========== ]
+"
+let g:tex_flavor='latex'
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+" latex autopairs
+au Filetype tex let b:AutoPairs = AutoPairsDefine({'$': '$'})
+" latex surround
+au Filetype tex xmap <silent> <buffer> $ S$
