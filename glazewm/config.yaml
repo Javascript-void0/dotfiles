@@ -1,4 +1,5 @@
 # config for glazewm 2.1.1
+# https://github.com/glzr-io/glazewm/tree/0e9b289bc8ded7e6fc7e84ac260c7e8a1800621a
 
 config:
   background: &background "#101010"

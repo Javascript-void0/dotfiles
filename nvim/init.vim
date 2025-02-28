@@ -81,6 +81,9 @@ cnoreabbrev Q q
 " :gof opens directory of current file in NERDTree
 command! Gof execute "NERDTree %:p:h"
 
+" nerdtree settings
+let NERDTreeShowHidden=1
+
 " assumes set ignorecase smartcase
 augroup dynamic_smartcase
     autocmd!

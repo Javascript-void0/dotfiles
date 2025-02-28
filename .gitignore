@@ -3,3 +3,4 @@ xournalpp/metadata
 xournalpp/autosave
 .cellwriter/fifo
 .cellwriter/profile.backup
+glazewm/errors.log
