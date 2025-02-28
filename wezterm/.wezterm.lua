@@ -112,4 +112,8 @@ config.wsl_domains = {
     },
 }
 
+for _, dom in ipairs(config.wsl_domains) do
+    dom.default_cwd = '~'
+end
+
 return config
