@@ -38,13 +38,13 @@ call plug#begin()
     Plug 'ellisonleao/gruvbox.nvim'                             " colorscheme
     Plug 'vim-airline/vim-airline'                              " bottom bar thing
     Plug 'vim-airline/vim-airline-themes'                       " bottom bar thing theme
-    Plug 'preservim/nerdtree'                                   " file explorer
+    Plug 'preservim/nerdtree', {'on': 'NERDTreeToggle' }        " file explorer
     Plug 'ap/vim-css-color'                                     " css color highlighting
     Plug 'romgrk/barbar.nvim'                                   " tab buffers
     Plug 'sheerun/vim-polyglot'                                 " language pack
     Plug 'jiangmiao/auto-pairs'                                 " complete pairs
     Plug 'tpope/vim-surround'                                   " add surrounding pairs
-    Plug 'plasticboy/vim-markdown'                              " markdown
+    Plug 'plasticboy/vim-markdown', {'for': 'markdown'}         " markdown
     Plug 'tpope/vim-commentary'                                 " commenting
     Plug 'mg979/vim-visual-multi'                               " multiple cursors
     Plug 'sirver/ultisnips', {'on': []}                         " snippets (for coc-snippets)
@@ -58,6 +58,7 @@ call plug#begin()
     Plug 'bullets-vim/bullets.vim'                              " lists
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }         " fzf
     Plug 'junegunn/fzf.vim'                                     " fzf vim
+    Plug 'lervag/vimtex', {'tag': 'v2.15'}                      " latex
 
     " Plug 'mikroskeem/vim-sk-syntax'                             " skript syntax highlighting
     " Plug 'peterhoeg/vim-qml'                                    " qt gui
@@ -113,7 +114,9 @@ hi EndOfBuffer          guibg=NONE ctermbg=NONE     " unused space transparent b
 hi LineNr               guibg=NONE ctermbg=NONE     " line numbers transparent background
 hi SignColumn           guibg=NONE ctermbg=NONE     " git-gutter transparent background
 hi TODO                 guifg=#bdae93 gui=NONE      " TODO color, no italic
-hi Folded               guibg=NONE ctermbg=NONE
+hi Folded               guibg=NONE ctermbg=NONE     " fold header
+hi Comment              gui=NONE                    " comment no italic
+hi String               gui=NONE                    " string no italic
 
 hi CocFloating          guibg=NONE ctermbg=NONE     " coc-nvim transparent background
 hi Floaterm             guibg=#282828 ctermbg=NONE  " floaterm solid background
@@ -162,6 +165,13 @@ augroup comment_string
     autocmd FileType c setlocal commentstring=//\ %s
     autocmd FileType ino setlocal commentstring=//\ %s
 augroup END
+
+" change surround
+xmap <silent> ( S)
+xmap <silent> [ S]
+xmap <silent> { S}
+xmap <silent> ' S'
+xmap <silent> " S"
 
 " open explorer where current file is located - ref https://vi.stackexchange.com/a/31847
 func! File_manager() abort
@@ -276,6 +286,7 @@ let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = "<s-tab>"
 
 
+
 " 
 " [ ========== Terminal ========== ]
 "
@@ -325,3 +336,20 @@ command! -bang -nargs=* GGrep
     \ call fzf#vim#grep(
     \   'git grep --line-number -- '.fzf#shellescape(<q-args>),
     \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+
+
+" 
+" [ ========== vimtex ========== ]
+"
+let g:tex_flavor='latex'
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+" latex autopairs
+au Filetype tex let b:AutoPairs = AutoPairsDefine({'$': '$'})
+" latex surround
+au Filetype tex xmap <silent> <buffer> $ S$

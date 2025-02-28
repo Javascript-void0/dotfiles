@@ -2,5 +2,7 @@
 	"snippets.priority": 1000,
 	"inlayHint.enable": false,
 	"diagnostic.virtualText": true,
-	"diagnostic.virtualTextPrefix": "-- "
+	"diagnostic.virtualTextPrefix": "-- ",
+	// ignore numbers
+	"suggest.ignoreRegexps": ["^[0-9]"]
 }
