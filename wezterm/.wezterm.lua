@@ -87,17 +87,38 @@ config.keys = {
     {
         key = 'phys:1',
         mods = 'CTRL|SHIFT',
-        action = wezterm.action.SpawnTab 'DefaultDomain',
+        action = wezterm.action.SpawnCommandInNewTab { 
+            domain = 'DefaultDomain',
+            cwd = 'C:/Users/Java'
+        }
     },
     {
         key = 'phys:2',
         mods = 'CTRL|SHIFT',
-        action = wezterm.action.SpawnTab { DomainName = 'WSL:Ubuntu' },
+        action = wezterm.action.SpawnCommandInNewTab {
+            domain = { DomainName = 'WSL:Ubuntu' },
+            cwd = '~'
+        }
     },
+    {
+    key = 'E',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.PromptInputLine {
+      description = 'Enter new name for tab',
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
 }
 config.enable_kitty_keyboard = true
 
-for i = 1, 8 do
+for i = 1, 9 do
   table.insert(config.keys, {
     key = tostring(i),
     mods = 'CTRL',
