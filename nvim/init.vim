@@ -31,6 +31,7 @@ set path+=**                       " subdirectories
 set termguicolors                  " no clue :shrug:
 set foldenable                     " fold with zc, zo
 set foldmethod=marker              " default marker: {{{  }}}
+set scrolloff=10                   " start scrolling before end of screen
 
 " install plugins
 call plug#begin()
@@ -175,6 +176,9 @@ xmap <silent> [ S]
 xmap <silent> { S}
 xmap <silent> ' S'
 xmap <silent> " S"
+
+" disable deleting pairs over multiple lines
+let g:AutoPairsMultilineClose = 0
 
 " open explorer where current file is located - ref https://vi.stackexchange.com/a/31847
 func! File_manager() abort
