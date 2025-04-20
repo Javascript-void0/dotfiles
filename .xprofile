@@ -1,0 +1,4 @@
+xrandr --newmode "1128x752" 69.18 1128 1184 1304 1480 752 753 756 779 -HSync +Vsync
+xrandr --addmode Virtual1 "1128x752"
+xrandr --output Virtual1 --mode "1128x752"
+xsetroot -solid "#3c3836"
