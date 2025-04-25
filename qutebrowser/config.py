@@ -35,7 +35,10 @@ for i in range(1, 10):
     config.bind(f'<Alt-{i}>', f'tab-focus --no-last {i}')
 config.bind('<Ctrl-Z>', 'mode-leave', mode='passthrough')
 
-c.aliases['pass'] = 'spawn --userscript qute-pass --username-target secret --username-pattern "username: (.+)"'
+c.aliases['login'] = 'spawn --userscript qute-pass --username-target secret --username-pattern "^username: (.+)$"'
+c.aliases['password'] = 'spawn --userscript qute-pass --password-only'
+c.aliases['username'] = 'spawn --userscript qute-pass --username-only'
+c.aliases['otp'] = 'spawn --userscript qute-pass --otp-only'
 
 c.completion.use_best_match = True
 c.content.fullscreen.window = True
