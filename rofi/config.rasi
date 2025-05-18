@@ -1,0 +1,16 @@
+@theme "gruvbox"
+
+configuration {
+    modi: "run";
+    font: "EnvyCodeR Nerd Font 12";
+    cycle: false;
+    kb-cancel: "Escape,[133]";
+    timeout {
+        action: "kb-cancel";
+        delay: 0;
+    }
+    filebrowser {
+        directories-first: true;
+        soring-method: "name";
+    }
+}
