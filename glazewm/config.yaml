@@ -129,12 +129,12 @@ window_rules:
   - command: "resize borders 0px -7px -7px -7px"
     match_process_name: "steam"                                     # steam borders
   - command: "set floating"
-    match_title: "Windhawk"                                         # Windhawk
-  - command: "set floating"
+    # match_title: "Windhawk"                                         # Windhawk
+  # - command: "set floating"
     match_title: "/Google Pixel 3/"                                 # BlueStacks
   - command: "set floating"
-    match_title: "/^MuMu.*$/"                                       # MuMu
-  - command: "set floating"
+    # match_title: "/^MuMu.*$/"                                       # MuMu
+  # - command: "set floating"
     match_process_name: "java"										# java
   - command: "set floating"
     match_title: "^(?!FireAlpaca).*$"					            # firealpaca
